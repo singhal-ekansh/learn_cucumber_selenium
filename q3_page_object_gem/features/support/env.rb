@@ -1,4 +1,5 @@
-require 'page-object'
+require 'rubygems'
 require 'selenium-webdriver'
+require 'page-object'
 
-@driver = Selenium::WebDriver.for :chrome
+  
