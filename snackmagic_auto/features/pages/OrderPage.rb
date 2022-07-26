@@ -13,7 +13,7 @@ class OrderPage
 
   div(:build_own, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[2]/div/div[3]/div[1]/div')
   link(:save_continue , xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[3]/div/div[2]/a')
-
+  
   div(:doller45, xpath: '//*[@id="budget-section"]/div[3]/div[1]/div/div/label/div')
   div(:doller60, xpath: '//*[@id="budget-section"]/div[3]/div[2]/div/div[2]/label/div')
   div(:doller99, xpath: '//*[@id="budget-section"]/div[3]/div[3]/div/div/label/div')
@@ -28,6 +28,20 @@ class OrderPage
   div(:not_collect_address, xpath: '//*[@id="recipient-information-modal-form"]/div/div/div[2]/div/div')
   div(:collect_address, xpath: '//*[@id="recipient-information-modal-form"]/div/div/div[1]/div/div')
 
+  button(:save, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[3]/div/div[2]/button')
+
+  div(:standard_ship, xpath: '//*[@id="shipping-modal-form"]/div/div[1]/div/div/label/div/div[1]')
+  div(:no_customize, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[2]/div/div[9]/div')
+  link(:custom_next, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[3]/div/div/a')
+
+  button(:proceed_to_check, xpath: '//*[@id="root"]/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div/div/div[2]/button')
+  div(:card, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[1]/div/div[1]/div[2]/div/div[5]/div[3]')
+  link(:card_next, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[2]/div/div[2]/a')
+  div(:snack_wallet, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[1]/div/div[1]/div[2]/div[3]/div[1]')
+  link(:place, xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[2]/div/div[2]/a')
+  div(:no_invite,xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[2]/div[3]/div/div[2]/div/div[3]/div/div/div[3]/div')
+  link(:confirm,xpath: '//*[@id="modal-root"]/div/div/div/div[1]/div/div[3]/div/div[2]/a')
+
   def fill_details(order_number)
     @order_details = data_for "user_orders/#{order_number}"
 
@@ -38,6 +52,10 @@ class OrderPage
     number_of_recipients()
     collect_email_or_not()
     link_expiration()
+    shipping_type()
+    message_send()
+    customization()
+    checkout()
   end
 
   def create_new_treat
@@ -100,11 +118,13 @@ class OrderPage
   end
 
   def number_of_recipients
-    total_recipient_element = @order_details['total_recipients']
-    non_us_recipient_element = @order_details['non_us_recipients']
+
+    total_recipient_element.send_keys @order_details['total_recipients']
+    non_us_recipient_element.send_keys @order_details['non_us_recipients']
     
-    sleep 15
-    puts "enter"
+    sleep 2
+    save_continue_element.click
+    sleep 5
     save_continue_element.click
     sleep 5
   end
@@ -117,7 +137,8 @@ class OrderPage
       not_collect_address_element.click
     end
 
-    save_continue_element.click
+    sleep 2
+    save_element.click
     sleep 5
   end
 
@@ -126,4 +147,39 @@ class OrderPage
     sleep 5
   end
 
+  def shipping_type
+    standard_ship_element.click
+    sleep 2
+    save_element.click
+    sleep 5
+  end
+
+  def message_send
+    save_continue_element.click
+    sleep 5
+  end
+
+  def customization
+    no_customize_element.click
+    sleep 2
+    custom_next_element.click
+    sleep 5
+  end
+
+  def checkout
+    proceed_to_check_element.click
+    sleep 5
+    card_element.click
+    sleep 2
+    card_next_element.click
+    sleep 5
+    snack_wallet_element.click
+    sleep 2
+    place_element.click
+    sleep 10
+    no_invite_element.click
+    sleep 2
+    confirm_element.click
+    sleep 10
+  end
 end

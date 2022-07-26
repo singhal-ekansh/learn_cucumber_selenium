@@ -10,7 +10,7 @@ class LoginPage
     order_details = data_for "user_orders/#{order_number}"
     populate_page_with order_details
     login_submit_element.click
-    sleep 15
+    sleep 10
   end
 end
 

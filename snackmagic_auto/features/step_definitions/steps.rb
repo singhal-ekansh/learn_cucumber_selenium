@@ -2,6 +2,7 @@ require_relative "../pages/HomePage.rb"
 require_relative "../pages/LoginPage.rb"
 
 Browser = Selenium::WebDriver.for :chrome
+Browser.manage.window.maximize
 Given('I am on snackmagic site') do
   @homepage = HomePage.new(Browser)
   @homepage.load_url
