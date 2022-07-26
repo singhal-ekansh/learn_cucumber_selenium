@@ -1,0 +1,13 @@
+order_1:
+  username: "avneet+4444@vinsol.com"
+  password: "Vinsol1."
+  treat_name: "vinsol_interns"
+  sender_name: "ekansh singhal"
+  treat_for: "teams"
+  treat_type: "snacks"
+  box_type: "build_their_own"
+  budget: "45"
+  link_restrict: "specific"
+  total_recipients: 15
+  non_us_recipients: 5
+  email_collect: "no"
