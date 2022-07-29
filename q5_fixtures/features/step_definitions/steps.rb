@@ -10,7 +10,7 @@ end
 Then("fill the form for {string}") do |detail_no|
   @google_form.populate_page(detail_no)
   @google_form.submit_form
-  sleep 3
+  sleep 5
 end
 
 Then('Response submitted successfully') do

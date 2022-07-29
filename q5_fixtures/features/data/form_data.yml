@@ -9,5 +9,5 @@ Detail2:
   name: ~full_name
   city: ~city
   phone: ~phone_number
-  skills: "Ruby, WEB AUTOMATION"
+  skills: "WEB AUTOMATION"
   role: "receptionist"
